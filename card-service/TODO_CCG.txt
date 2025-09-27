@@ -1,0 +1,7 @@
+TODO
+
+Add graphql
+add nginx
+add angular
+
+Maybe look at monitoring equivalent to Zipkin
