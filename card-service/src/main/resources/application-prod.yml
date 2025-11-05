@@ -1,0 +1,9 @@
+spring:
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS}
+  cassandra:
+    contact-points: ${CASSANDRA_HOSTS}
+    port: ${CASSANDRA_PORT:9042}
+    local-datacenter: ${CASSANDRA_DC}
+    keyspace-name: ${CASSANDRA_KEYSPACE}
+    schema-action: none

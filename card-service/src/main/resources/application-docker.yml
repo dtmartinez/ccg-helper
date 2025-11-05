@@ -1,0 +1,9 @@
+spring:
+  kafka:
+    bootstrap-servers: kafka:29092
+  cassandra:
+    contact-points: cassandra
+    port: 9042
+    local-datacenter: dc1
+    keyspace-name: cards
+    schema-action: create_if_not_exists

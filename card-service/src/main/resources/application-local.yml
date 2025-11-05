@@ -1,0 +1,12 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+  cassandra:
+    contact-points: localhost
+    port: 9042
+    local-datacenter: dc1
+    keyspace-name: cards
+    schema-action: create_if_not_exists
+logging:
+  level:
+    com.datastax.oss.driver: INFO
