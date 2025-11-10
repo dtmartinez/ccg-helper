@@ -77,9 +77,9 @@ services:
     volumes:
       - cassandra-data:/var/lib/cassandra
 
-  card-service:
-    build: ./backend/card-service
-    container_name: card-service
+  riftbound-card-service:
+    build: ./backend/riftbound-card-service
+    container_name: riftbound-card-service
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
