@@ -75,7 +75,7 @@ services:
       timeout: 5s
       retries: 20
     volumes:
-      - cassandra-data:/var/lib/cassandra
+      - cassandra-data:/var/lib/cassandra/data
 
   riftbound-card-service:
     build: ./backend/riftbound-card-service
