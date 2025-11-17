@@ -1,0 +1,54 @@
+spring:
+  profiles:
+    active:
+      test
+
+  application:
+    name: riftbound-card-service
+
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: riftbound-card-service
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        # safer processing defaults
+        max.poll.interval.ms: 300000
+        max.poll.records: 500
+        enable.auto.commit: false
+    listener:
+      ack-mode: RECORD
+      concurrency: 1
+    producer:
+      acks: all
+      retries: 3
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    # Admin client used to create topics via a @Bean
+    admin:
+      fail-fast: true
+
+  # --- Cassandra (Spring Boot 3/4 names) ---
+  cassandra:
+    contact-points: ${SPRING_DATA_CASSANDRA_CONTACT_POINTS:localhost}
+    port: ${SPRING_DATA_CASSANDRA_PORT:9042}
+    local-datacenter: ${SPRING_DATA_CASSANDRA_LOCAL_DATACENTER:dc1}
+    keyspace-name: ${SPRING_DATA_CASSANDRA_KEYSPACE_NAME:cards}
+    schema-action: create_if_not_exists
+    request:
+      timeout: 3s
+    connection:
+      connect-timeout: 3s
+      init-query-timeout: 3s
+
+grpc:
+  server:
+    port: ${GRPC_SERVER_PORT:9090}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,httpexchanges,threaddump
